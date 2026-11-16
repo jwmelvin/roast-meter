@@ -96,10 +96,13 @@ The arithmetic is in `src/roast_math.h`, tested on a desktop:
     c++ -std=c++11 -Isrc test/host/roast_math_test.cpp -o /tmp/roast_math_test && /tmp/roast_math_test
 
 Builds for the Thing Plus Artemis with arduino-cli (SparkFun Apollo3 core 2.2.1,
-MAX3010x library 1.1.2); copy `roast_meter.ino` and `roast_math.h` into a folder
-named `roast_meter` first, since the Arduino tools want the folder to match:
+MAX3010x library 1.1.2, Micro OLED 1.3.4). `build.sh` copies the sources into
+`build/<sketch>/` (the Arduino tools want the folder to match the sketch name),
+compiles, and optionally uploads; its header lists the one-time setup:
 
-    arduino-cli compile --fqbn SparkFun:apollo3:sfe_artemis_thing_plus roast_meter
+    ./build.sh plain              # compile src/roast_meter.ino
+    ./build.sh ble                # compile src/roast_meter_ble.cpp
+    ./build.sh plain upload       # compile and flash the first USB serial port
 
 **Compiled, not yet run on the hardware.**
 
