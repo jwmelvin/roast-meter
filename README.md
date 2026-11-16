@@ -95,7 +95,13 @@ The arithmetic is in `src/roast_math.h`, tested on a desktop:
 
     c++ -std=c++11 -Isrc test/host/roast_math_test.cpp -o /tmp/roast_math_test && /tmp/roast_math_test
 
-**Not yet built for or run on the hardware.**
+Builds for the Thing Plus Artemis with arduino-cli (SparkFun Apollo3 core 2.2.1,
+MAX3010x library 1.1.2); copy `roast_meter.ino` and `roast_math.h` into a folder
+named `roast_meter` first, since the Arduino tools want the folder to match:
+
+    arduino-cli compile --fqbn SparkFun:apollo3:sfe_artemis_thing_plus roast_meter
+
+**Compiled, not yet run on the hardware.**
 
 ## Calibration process
 https://github.com/juztins-lab/roast-meter/wiki/Roast-Meter-User's-Guide#calibration-methods
