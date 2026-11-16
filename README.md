@@ -71,6 +71,32 @@ https://github.com/juztins-lab/roast-meter/wiki/Roast-Meter-Assembly-Instruction
 ## User Guide
 https://github.com/juztins-lab/roast-meter/wiki/Roast-Meter-User's-Guide
 
+## This fork: full-resolution, averaged, reference-normalised readings
+
+Branch `feature/full-resolution` changes the plain build (`src/roast_meter.ino`);
+the Bluetooth build is untouched.
+
+* **Tenths.** Upstream divides the IR count by 1000 and drops the remainder
+  before mapping it, so its display moves in steps of 1.165. The whole count is
+  now kept.
+* **A 2 s mean, with its scatter.** The number is the mean of the last 25
+  samples. Right of it: the tenths (`..` until 2 s are in), the standard
+  deviation of those samples in the same units, `ok` once that is under 0.5,
+  and the reference state.
+* **Baking soda re-references the meter.** A settled reading within 20 of 230
+  is taken to be the soda standard (`REF`). Until power-off every later reading
+  is scaled so soda is exactly 230.0 (`ref`). Before soda has been read the
+  scale is `ledBrightness` alone, as upstream (`raw`). The reference is not
+  stored: read soda at the start of each session.
+* Serial prints `real` (mean count), `sd`, `n`, `raw` (un-normalised),
+  `reference` (soda count in force) and `agtron`.
+
+The arithmetic is in `src/roast_math.h`, tested on a desktop:
+
+    c++ -std=c++11 -Isrc test/host/roast_math_test.cpp -o /tmp/roast_math_test && /tmp/roast_math_test
+
+**Not yet built for or run on the hardware.**
+
 ## Calibration process
 https://github.com/juztins-lab/roast-meter/wiki/Roast-Meter-User's-Guide#calibration-methods
 
