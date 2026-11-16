@@ -127,7 +127,7 @@ void setup() {
   // The variable below calibrates the LED output on your hardware: set it so
   // baking soda reads near 230 with "raw" showing. It only has to land within
   // REFERENCE_BAND of 230 -- the soda reading itself then sets the exact scale.
-  byte ledBrightness = 135;
+  byte ledBrightness = 128;  // this meter: 32 at the old 4096 ADC range, x4 for 16384 (upstream used 135)
 
   byte sampleAverage = 4;  // Options: 1, 2, 4, 8, 16, --32--
   byte ledMode = 2;        // Options: 1 = Red only, --2 = Red + IR--, 3 = Red + IR + Green

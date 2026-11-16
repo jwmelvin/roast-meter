@@ -40,7 +40,7 @@
 #define EEPROM_VALID_IDX 0                     // 1 byte
 #define EEPROM_VALID_CODE (0xAA)               // uint8
 #define EEPROM_LED_BRIGHTNESS_IDX 1            // 1 byte
-#define EEPROM_LED_BRIGHTNESS_DEFAULT 135      // uint8
+#define EEPROM_LED_BRIGHTNESS_DEFAULT 128      // uint8; this meter (upstream used 135)
 #define EEPROM_INTERSECTION_POINT_IDX 2        // 1 byte
 #define EEPROM_INTERSECTION_POINT_DEFAULT 117  // uint8
 #define EEPROM_DEVIATION_IDX 3                 // 1 byte
